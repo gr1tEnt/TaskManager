@@ -3,7 +3,7 @@ package com.gr1t.taskmanager;
 import java.util.*;
 
 public class TaskManager {
-    static List<String> tasks = new ArrayList<>();
+    private static List<String> tasks = new ArrayList<>();
 
     public static Task createTask(String title, String description, Priority priority) {
         Task task = new Task(title, description, priority);
