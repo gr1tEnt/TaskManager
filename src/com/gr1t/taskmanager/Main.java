@@ -12,7 +12,8 @@ public class Main {
             System.out.println("2. View All Tasks");
             System.out.println("3. Save as file");
             System.out.println("4. Sort by priority");
-            System.out.println("5. Exit");
+            System.out.println("5. Remove by index");
+            System.out.println("6. Exit");
             System.out.print("Choose an option: ");
 
             int choice;
@@ -20,7 +21,7 @@ public class Main {
             while (true) { // Check input for correct number
                 if (scanner.hasNextInt()) {
                     choice = scanner.nextInt();
-                    if (choice >= 1 && choice <=5){ // Check input for correct range
+                    if (choice >= 1 && choice <= 6){ // Check input for correct range
                         break;
                     } else {
                         System.out.println("Invalid input. Please enter a number in range 1-3: ");
@@ -66,6 +67,14 @@ public class Main {
                     System.out.println("Successfully sorted by priority!");
                     break;
                 case 5:
+                    TaskManager.printAllTasks();
+                    System.out.println("Enter number of task: ");
+                    int removeByIndex = scanner.nextInt();
+                    TaskManager.removeTask(removeByIndex);
+                    System.out.println("List after removing: ");
+                    TaskManager.printAllTasks();
+                    break;
+                case 6:
                     System.out.println("Leave a review on zversilneykitayca.com");
                     return;
                 default:

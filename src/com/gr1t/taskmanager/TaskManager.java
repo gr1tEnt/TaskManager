@@ -13,8 +13,10 @@ public class TaskManager {
 }
 
     public static void  printAllTasks() {
+        int index = 1;
         for (Task task : tasks) {
-            System.out.println(task);
+            System.out.println(index + " " + task);
+            index++;
         }
     }
 
@@ -32,5 +34,9 @@ public class TaskManager {
 
     public static void sortByPriority() {
         tasks.sort(Comparator.comparing(Task::getPriority));
+    }
+
+    public static void removeTask (int removeByIndex) {
+            tasks.remove(removeByIndex - 1);
     }
 }
