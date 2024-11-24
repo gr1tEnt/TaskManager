@@ -1,34 +1,36 @@
 package com.gr1t.taskmanager;
 
-import javax.sound.midi.Soundbank;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.*;
+import java.io.*;
 
 public class TaskManager {
-    private static List<String> tasks = new ArrayList<>();
+    private static List<Task> tasks = new ArrayList<>();
 
     public static Task createTask(String title, String description, Priority priority) {
         Task task = new Task(title, description, priority);
-        tasks.add(String.valueOf(task));
+        tasks.add(task);
         return task;
 }
 
     public static void  printAllTasks() {
-        for (String task : tasks) {
+        for (Task task : tasks) {
             System.out.println(task);
         }
     }
 
     public static void saveTasks (String fileName) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".txt"));) {
-            for (String task : tasks) {
-                writer.write(task);
+            for (Task task : tasks) {
+                writer.write(String.valueOf(task));
+                writer.newLine();
             }
             System.out.println("File successfully saved as: " + fileName + ".txt");
         } catch (IOException e) {
             System.out.println("Your fault is: " + e.getMessage());
         }
+    }
+
+    public static void sortByPriority() {
+        tasks.sort(Comparator.comparing(Task::getPriority));
     }
 }
