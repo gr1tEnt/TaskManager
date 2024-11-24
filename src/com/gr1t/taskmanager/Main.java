@@ -1,5 +1,9 @@
 package com.gr1t.taskmanager;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.*;
 
 public class Main {
@@ -55,7 +59,11 @@ public class Main {
                     TaskManager.printAllTasks();
                     break;
                 case 3:
-                    System.out.println("In development");
+                    System.out.println("Enter file name: ");
+                    scanner.nextLine();
+                    String fileName = scanner.nextLine();
+                    TaskManager.saveTasks(fileName);
+                    break;
                 case 4:
                     System.out.println("Leave a review on zversilneykitayca.com");
                     return;
