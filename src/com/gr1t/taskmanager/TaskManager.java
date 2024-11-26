@@ -37,6 +37,10 @@ public class TaskManager {
     }
 
     public static void removeTask (int removeByNumber) {
-            tasks.remove(removeByNumber - 1);
+        tasks.remove(removeByNumber - 1);
+    }
+
+    public static void sortByStatus () {
+        tasks.sort(Comparator.comparing(Task::isCompleted));
     }
 }
