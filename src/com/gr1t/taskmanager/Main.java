@@ -12,24 +12,26 @@ public class Main {
             System.out.println("2. View All Tasks");
             System.out.println("3. Save as file");
             System.out.println("4. Sort by priority");
-            System.out.println("5. Remove by index");
+            System.out.println("5. Remove by number");
             System.out.println("6. Exit");
             System.out.print("Choose an option: ");
 
             int choice;
 
-            while (true) { // Check input for correct number
-                if (scanner.hasNextInt()) {
-                    choice = scanner.nextInt();
-                    if (choice >= 1 && choice <= 6){ // Check input for correct range
-                        break;
-                    } else {
-                        System.out.println("Invalid input. Please enter a number in range 1-3: ");
-                    }
-                } else {
-                        System.out.println("Invalid input. Enter a number:");
-                        scanner.next();
+            while (true) { // Check input for number
+                if (!scanner.hasNextInt()) {
+                    System.out.println("Invalid input. Enter a number:");
+                    scanner.next();
+                    continue;
                 }
+
+                choice = scanner.nextInt();
+
+                if (choice < 1 || choice > 6) { // Check input for correct range
+                    System.out.println("Invalid input. Please enter a number in range 1-3: ");
+                    continue;
+                }
+                break;
             }
 
             switch (choice) {
@@ -65,12 +67,14 @@ public class Main {
                 case 4:
                     TaskManager.sortByPriority();
                     System.out.println("Successfully sorted by priority!");
+                    System.out.println("Your sorted list: ");
+                    TaskManager.printAllTasks();
                     break;
                 case 5:
                     TaskManager.printAllTasks();
                     System.out.println("Enter number of task: ");
-                    int removeByIndex = scanner.nextInt();
-                    TaskManager.removeTask(removeByIndex);
+                    int removeByNumber = scanner.nextInt();
+                    TaskManager.removeTask(removeByNumber);
                     System.out.println("List after removing: ");
                     TaskManager.printAllTasks();
                     break;

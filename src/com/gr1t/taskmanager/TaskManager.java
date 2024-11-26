@@ -13,10 +13,10 @@ public class TaskManager {
 }
 
     public static void  printAllTasks() {
-        int index = 1;
+        int number = 1;
         for (Task task : tasks) {
-            System.out.println(index + " " + task);
-            index++;
+            System.out.println(number + " " + task);
+            number++;
         }
     }
 
@@ -28,7 +28,7 @@ public class TaskManager {
             }
             System.out.println("File successfully saved as: " + fileName + ".txt");
         } catch (IOException e) {
-            System.out.println("Your fault is: " + e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -36,7 +36,7 @@ public class TaskManager {
         tasks.sort(Comparator.comparing(Task::getPriority));
     }
 
-    public static void removeTask (int removeByIndex) {
-            tasks.remove(removeByIndex - 1);
+    public static void removeTask (int removeByNumber) {
+            tasks.remove(removeByNumber - 1);
     }
 }
