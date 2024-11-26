@@ -52,7 +52,5 @@ public class Task {
         this.title = title;
         this.description = description;
         this.priority = priority;
-
-
     }
 }
