@@ -37,8 +37,13 @@ public class TaskManager {
     }
 
     public static void removeTask (int taskNumber) {
-        tasks.remove(taskNumber - 1);
+        if (taskNumber > 0 && taskNumber <= tasks.size()) {
+            tasks.remove(taskNumber - 1);
+        } else {
+            System.out.println("Invalid task number. Please try again");
+        }
     }
+
 
     public static void sortByStatus () {
         tasks.sort(Comparator.comparing(Task::isCompleted));
