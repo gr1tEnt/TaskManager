@@ -4,7 +4,7 @@ import java.util.*;
 import java.io.*;
 
 public class TaskManager {
-    private static List<Task> tasks = new ArrayList<>();
+    private static final List<Task> tasks = new ArrayList<>();
 
     public static Task createTask(String title, String description, Priority priority) {
         Task task = new Task(title, description, priority);
@@ -21,7 +21,7 @@ public class TaskManager {
     }
 
     public static void saveTasks (String fileName) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".txt"));) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".txt"))) {
             for (Task task : tasks) {
                 writer.write(String.valueOf(task));
                 writer.newLine();
@@ -36,11 +36,21 @@ public class TaskManager {
         tasks.sort(Comparator.comparing(Task::getPriority));
     }
 
-    public static void removeTask (int removeByNumber) {
-        tasks.remove(removeByNumber - 1);
+    public static void removeTask (int taskNumber) {
+        tasks.remove(taskNumber - 1);
     }
 
     public static void sortByStatus () {
         tasks.sort(Comparator.comparing(Task::isCompleted));
+    }
+
+    public static void makeCompleted (int taskNumber) {
+        if (taskNumber > 0 && taskNumber <= tasks.size()) {
+            Task task = tasks.get(taskNumber - 1);
+            task.setCompleted(true);
+            System.out.println("Task is completed: " + task);
+        } else {
+            System.out.println("Invalid task number. Please try again");
+        }
     }
 }
