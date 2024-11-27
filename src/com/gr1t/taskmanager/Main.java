@@ -12,8 +12,11 @@ public class Main {
             System.out.println("2. View All Tasks");
             System.out.println("3. Save as file");
             System.out.println("4. Sort by priority");
-            System.out.println("5. Remove by number");
-            System.out.println("6. Exit");
+            System.out.println("5. Sort by status");
+            System.out.println("6. Make task completed");
+            System.out.println("7. Remove by number");
+            System.out.println("8. Update task");
+            System.out.println("9. Exit");
             System.out.print("Choose an option: ");
 
             int choice;
@@ -27,7 +30,7 @@ public class Main {
 
                 choice = scanner.nextInt();
 
-                if (choice < 1 || choice > 6) { // Check input for correct range
+                if (choice < 1 || choice > 9) { // Check input for correct range
                     System.out.println("Invalid input. Please enter a number in range 1-3: ");
                     continue;
                 }
@@ -71,14 +74,50 @@ public class Main {
                     TaskManager.printAllTasks();
                     break;
                 case 5:
-                    TaskManager.printAllTasks();
-                    System.out.println("Enter number of task: ");
-                    int removeByNumber = scanner.nextInt();
-                    TaskManager.removeTask(removeByNumber);
-                    System.out.println("List after removing: ");
+                    TaskManager.sortByStatus();
+                    System.out.println("List after sorting by status: ");
                     TaskManager.printAllTasks();
                     break;
                 case 6:
+                    TaskManager.printAllTasks();
+                    System.out.println("Enter number of task: ");
+                    int markByNumber = scanner.nextInt();
+                    TaskManager.makeCompleted(markByNumber);
+                    break;
+                case 7:
+                    TaskManager.printAllTasks();
+                    System.out.println("Enter number of task: ");
+                    int taskNumber = scanner.nextInt();
+                    TaskManager.removeTask(taskNumber);
+                    System.out.println("List after removing: ");
+                    TaskManager.printAllTasks();
+                    break;
+                case 8:
+                    TaskManager.printAllTasks();
+                    System.out.println("Enter number of task you wanna update: ");
+                    int taskNum = scanner.nextInt();
+                    scanner.nextLine();
+                    if (taskNum < 1 || taskNum >= TaskManager.getTaskCount()) {
+                        System.out.println("Task with this number does not exist!");
+                        break;
+                    }
+                    System.out.println("Enter new title: ");
+                    String newTitle = scanner.nextLine();
+                    System.out.println("Enter new description: ");
+                    String newDescription = scanner.nextLine();
+                    Priority newPriority;
+                    while (true) {
+                        try {
+                            System.out.println("Enter priority (LOW, MEDIUM, HIGH): ");
+                            newPriority = Priority.valueOf(scanner.nextLine().toUpperCase());
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("ENTER ONLY RIGHT PRIORITY!!!: ");
+                        }
+                    }
+                    TaskManager.updateTask(taskNum, newTitle, newDescription, newPriority);
+                    break;
+                case 9:
                     System.out.println("Leave a review on zversilneykitayca.com");
                     return;
                 default:
