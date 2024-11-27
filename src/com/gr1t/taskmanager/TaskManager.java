@@ -10,9 +10,9 @@ public class TaskManager {
         Task task = new Task(title, description, priority);
         tasks.add(task);
         return task;
-}
+    }
 
-    public static void  printAllTasks() {
+    public static void printAllTasks() {
         int number = 1;
         for (Task task : tasks) {
             System.out.println(number + " " + task);
@@ -20,7 +20,7 @@ public class TaskManager {
         }
     }
 
-    public static void saveTasks (String fileName) {
+    public static void saveTasks(String fileName) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".txt"))) {
             for (Task task : tasks) {
                 writer.write(String.valueOf(task));
@@ -36,7 +36,7 @@ public class TaskManager {
         tasks.sort(Comparator.comparing(Task::getPriority));
     }
 
-    public static void removeTask (int taskNumber) {
+    public static void removeTask(int taskNumber) {
         if (taskNumber > 0 && taskNumber <= tasks.size()) {
             tasks.remove(taskNumber - 1);
         } else {
@@ -45,11 +45,11 @@ public class TaskManager {
     }
 
 
-    public static void sortByStatus () {
+    public static void sortByStatus() {
         tasks.sort(Comparator.comparing(Task::isCompleted));
     }
 
-    public static void makeCompleted (int taskNumber) {
+    public static void makeCompleted(int taskNumber) {
         if (taskNumber > 0 && taskNumber <= tasks.size()) {
             Task task = tasks.get(taskNumber - 1);
             task.setCompleted(true);
@@ -57,5 +57,13 @@ public class TaskManager {
         } else {
             System.out.println("Invalid task number. Please try again");
         }
+    }
+
+    public static void updateTask (int taskNum, String newTitle, String newDescription, Priority newPriority) {
+        Task task = tasks.get(taskNum - 1);
+        task.setTitle(newTitle);
+        task.setDescription(newDescription);
+        task.setPriority(newPriority);
+        System.out.println("Task" + (taskNum - 1) + "updated to: " + task);
     }
 }
