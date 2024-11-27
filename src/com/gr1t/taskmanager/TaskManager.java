@@ -66,4 +66,8 @@ public class TaskManager {
         task.setPriority(newPriority);
         System.out.println("Task" + (taskNum - 1) + "updated to: " + task);
     }
+    
+    public static int getTaskCount() {
+        return tasks.size();
+    }
 }

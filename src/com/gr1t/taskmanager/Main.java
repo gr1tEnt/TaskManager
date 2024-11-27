@@ -97,6 +97,10 @@ public class Main {
                     System.out.println("Enter number of task you wanna update: ");
                     int taskNum = scanner.nextInt();
                     scanner.nextLine();
+                    if (taskNum < 1 || taskNum >= TaskManager.getTaskCount()) {
+                        System.out.println("Task with this number does not exist!");
+                        break;
+                    }
                     System.out.println("Enter new title: ");
                     String newTitle = scanner.nextLine();
                     System.out.println("Enter new description: ");
