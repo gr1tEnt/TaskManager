@@ -60,7 +60,7 @@ public class TaskManager {
     }
 
     public static void updateTask(int taskNum, Task updatedTask) {
-        tasks.set(taskNum - 1, updatedTask);
+            tasks.set(taskNum - 1, updatedTask);
         System.out.println("Task " + taskNum + " updated to: " + updatedTask);
     }
 

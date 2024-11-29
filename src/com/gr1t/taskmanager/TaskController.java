@@ -90,7 +90,7 @@ public class TaskController {
                 priority = Priority.valueOf(scanner.nextLine().toUpperCase());
                 break;
             } catch (Exception e) {
-                System.out.println("ENTER ONLY RIGHT PRIORITY!!!: ");
+                System.out.println("Value is not correct, please try again: ");
             }
         }
         Task task = TaskManager.createTask(title, description, priority);
@@ -145,10 +145,29 @@ public class TaskController {
             return;
         }
 
-        System.out.println("Enter new title: ");
-        String newTitle = scanner.nextLine();
-        System.out.println("Enter new description: ");
-        String newDescription = scanner.nextLine();
+        String newTitle;
+        String newDescription;
+
+        while (true) {
+            System.out.println("Enter new title: ");
+            newTitle = scanner.nextLine();
+            if (newTitle.isEmpty()) {
+                System.out.println("Title cannot be empty. Please enter a valid title: ");
+            } else {
+                break;
+            }
+        }
+
+        while (true) {
+            System.out.println("Enter new description: ");
+            newDescription = scanner.nextLine();
+
+            if (newDescription.isEmpty()) {
+                System.out.println("Description cannot be empty. Please enter a valid description: ");
+            } else {
+                break;
+            }
+        }
 
         Priority newPriority;
         while (true) {
@@ -160,7 +179,7 @@ public class TaskController {
                 System.out.println("Value is not correct, please try again ");
             }
         }
-        
+
         Task newTask = new Task(newTitle, newDescription, newPriority);
         TaskManager.updateTask(taskNum, newTask);    }
 }
