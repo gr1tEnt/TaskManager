@@ -59,12 +59,9 @@ public class TaskManager {
         }
     }
 
-    public static void updateTask (int taskNum, String newTitle, String newDescription, Priority newPriority) {
-        Task task = tasks.get(taskNum - 1);
-        task.setTitle(newTitle);
-        task.setDescription(newDescription);
-        task.setPriority(newPriority);
-        System.out.println("Task" + (taskNum - 1) + "updated to: " + task);
+    public static void updateTask(int taskNum, Task updatedTask) {
+        tasks.set(taskNum - 1, updatedTask);
+        System.out.println("Task " + taskNum + " updated to: " + updatedTask);
     }
 
     public static int getTaskCount() {

@@ -139,14 +139,17 @@ public class TaskController {
         System.out.println("Enter number of task you wanna update: ");
         int taskNum = scanner.nextInt();
         scanner.nextLine();
+
         if (taskNum < 1 || taskNum > TaskManager.getTaskCount()) {
             System.out.println("Task with this number does not exist!");
             return;
         }
+
         System.out.println("Enter new title: ");
         String newTitle = scanner.nextLine();
         System.out.println("Enter new description: ");
         String newDescription = scanner.nextLine();
+
         Priority newPriority;
         while (true) {
             try {
@@ -157,6 +160,7 @@ public class TaskController {
                 System.out.println("Value is not correct, please try again ");
             }
         }
-        TaskManager.updateTask(taskNum, newTitle, newDescription, newPriority);
-    }
+        
+        Task newTask = new Task(newTitle, newDescription, newPriority);
+        TaskManager.updateTask(taskNum, newTask);    }
 }
