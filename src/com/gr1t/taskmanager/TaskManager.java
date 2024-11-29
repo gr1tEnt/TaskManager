@@ -49,7 +49,7 @@ public class TaskManager {
         tasks.sort(Comparator.comparing(Task::isCompleted));
     }
 
-    public static void makeCompleted(int taskNumber) {
+    public static void markCompleted(int taskNumber) {
         if (taskNumber > 0 && taskNumber <= tasks.size()) {
             Task task = tasks.get(taskNumber - 1);
             task.setCompleted(true);
@@ -66,7 +66,7 @@ public class TaskManager {
         task.setPriority(newPriority);
         System.out.println("Task" + (taskNum - 1) + "updated to: " + task);
     }
-    
+
     public static int getTaskCount() {
         return tasks.size();
     }
