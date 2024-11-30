@@ -104,19 +104,15 @@ public class TaskController {
         TaskManager.saveTasks(fileName);
     }
     private static void sortByPriority() {
-        List<Task> sortedTasks = TaskManager.sortByPriority();
+        TaskManager.sortByPriority();
         System.out.println("Successfully sorted by priority!");
         System.out.println("Your sorted list: ");
-        for (Task task:sortedTasks) {
-            System.out.println(task);
-        }
+        TaskManager.printAllTasks();
     }
     private static void sortByStatus() {
-        List<Task> sortedTasks = TaskManager.sortByStatus();
+        TaskManager.sortByStatus();
         System.out.println("List after sorting by status: ");
-        for (Task task:sortedTasks) {
-            System.out.println(task);
-        }
+        TaskManager.printAllTasks();
     }
     private static void markCompleted() {
         TaskManager.printAllTasks();
