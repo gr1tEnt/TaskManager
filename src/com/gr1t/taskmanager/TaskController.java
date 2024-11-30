@@ -1,5 +1,6 @@
 package com.gr1t.taskmanager;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class TaskController {
@@ -103,15 +104,19 @@ public class TaskController {
         TaskManager.saveTasks(fileName);
     }
     private static void sortByPriority() {
-        TaskManager.sortByPriority();
+        List<Task> sortedTasks = TaskManager.sortByPriority();
         System.out.println("Successfully sorted by priority!");
         System.out.println("Your sorted list: ");
-        TaskManager.printAllTasks();
+        for (Task task:sortedTasks) {
+            System.out.println(task);
+        }
     }
     private static void sortByStatus() {
-        TaskManager.sortByStatus();
+        List<Task> sortedTasks = TaskManager.sortByStatus();
         System.out.println("List after sorting by status: ");
-        TaskManager.printAllTasks();
+        for (Task task:sortedTasks) {
+            System.out.println(task);
+        }
     }
     private static void markCompleted() {
         TaskManager.printAllTasks();

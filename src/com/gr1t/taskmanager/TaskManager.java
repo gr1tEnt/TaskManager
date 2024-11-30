@@ -32,8 +32,10 @@ public class TaskManager {
         }
     }
 
-    public static void sortByPriority() {
-        tasks.sort(Comparator.comparing(Task::getPriority));
+    public static List<Task> sortByPriority() {
+        List<Task> sortedByPriorityTasks = new ArrayList<>(tasks);
+        sortedByPriorityTasks.sort(Comparator.comparing(Task::getPriority));
+        return sortedByPriorityTasks;
     }
 
     public static void removeTask(int taskNumber) {
@@ -45,8 +47,10 @@ public class TaskManager {
     }
 
 
-    public static void sortByStatus() {
-        tasks.sort(Comparator.comparing(Task::isCompleted));
+    public static List<Task> sortByStatus() {
+        List<Task> sortedTasks = new ArrayList<>(tasks);
+        sortedTasks.sort(Comparator.comparing(Task::isCompleted));
+        return sortedTasks;
     }
 
     public static void markCompleted(int taskNumber) {
@@ -60,7 +64,7 @@ public class TaskManager {
     }
 
     public static void updateTask(int taskNum, Task updatedTask) {
-            tasks.set(taskNum - 1, updatedTask);
+        tasks.set(taskNum - 1, updatedTask);
         System.out.println("Task " + taskNum + " updated to: " + updatedTask);
     }
 
