@@ -142,7 +142,7 @@ public class TaskController {
         scanner.nextLine();
 
         if (taskNum < 1 || taskNum > TaskManager.getTaskCount()) {
-            System.out.println("Task with this number does not exist!");
+            System.out.println("Invalid task number");
             return;
         }
 
