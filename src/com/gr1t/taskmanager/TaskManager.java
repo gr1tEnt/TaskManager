@@ -74,7 +74,7 @@ public class TaskManager {
         List<Task> matchingTask = new ArrayList<>();
 
         for (Task task:tasks) {
-            if (task.getTitle().contains(searchQuery)) {
+            if (task.getTitle().toLowerCase().contains(searchQuery.toLowerCase())) {
                 matchingTask.add(task);
             }
         }
