@@ -37,6 +37,8 @@ public class TaskController {
                     updateTask();
                     break;
                 case 9:
+                    searchByTitle();
+                case 10:
                     return;
                 default:
                     System.out.println("Value is not correct, please try again");
@@ -54,7 +56,8 @@ public class TaskController {
         System.out.println("6. Make task completed");
         System.out.println("7. Remove by number");
         System.out.println("8. Update task");
-        System.out.println("9. Exit");
+        System.out.println("9. Search by title");
+        System.out.println("10. Exit");
         System.out.print("Choose an option: ");
     }
 
@@ -182,5 +185,19 @@ public class TaskController {
         }
 
         Task newTask = new Task(newTitle, newDescription, newPriority);
-        TaskManager.updateTask(taskNum, newTask);    }
+        TaskManager.updateTask(taskNum, newTask);
+    }
+
+    private static void searchByTitle() {
+        scanner.nextLine();
+        System.out.println("Enter the title you want to find: ");
+        String searchQuery = scanner.nextLine();
+
+        List<Task> matchingTasks = TaskManager.searchByTitle(searchQuery);
+            if (matchingTasks.isEmpty()) {
+                System.out.println("No tasks found with the title: " + searchQuery);
+            } else {
+                System.out.println("Found task matching the title: " + matchingTasks);
+            }
+    }
 }

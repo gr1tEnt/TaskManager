@@ -70,6 +70,17 @@ public class TaskManager {
         System.out.println("Task " + taskNum + " updated to: " + updatedTask);
     }
 
+    public static List<Task> searchByTitle (String searchQuery) {
+        List<Task> matchingTask = new ArrayList<>();
+
+        for (Task task:tasks) {
+            if (task.getTitle().contains(searchQuery)) {
+                matchingTask.add(task);
+            }
+        }
+        return matchingTask;
+    }
+
     public static int getTaskCount() {
         return tasks.size();
     }
