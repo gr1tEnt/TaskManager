@@ -38,6 +38,7 @@ public class TaskController {
                     break;
                 case 9:
                     searchByTitle();
+                    break;
                 case 10:
                     return;
                 default:
