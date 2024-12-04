@@ -3,41 +3,41 @@ package com.gr1t.taskmanager;
 import java.util.List;
 import java.util.Scanner;
 
-public class TaskController {
+public class TaskMenu {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void start() {
         while (true) {
-            showMenu();
+            displayMenu();
             int choice = getUserChoice();
 
             switch (choice){
                 case 1:
-                    createTask();
+                    processCreateTask();
                     break;
                 case 2:
-                    viewTasks();
+                    processViewAllTasks();
                     break;
                 case 3:
-                    saveAsFile();
+                    processSaveAsFile();
                     break;
                 case 4:
-                    sortByPriority();
+                    processSortByPriority();
                     break;
                 case 5:
-                    sortByStatus();
+                    processSortByStatus();
                     break;
                 case 6:
-                    markCompleted();
+                    processMarkCompleted();
                     break;
                 case 7:
-                    removeByNumber();
+                    processRemoveByNumber();
                     break;
                 case 8:
-                    updateTask();
+                    processUpdateTask();
                     break;
                 case 9:
-                    searchByTitle();
+                    processSearchByTitle();
                     break;
                 case 10:
                     return;
@@ -48,7 +48,7 @@ public class TaskController {
         }
     }
     
-    private static void showMenu(){
+    private static void displayMenu(){
         System.out.println("1. Create Task");
         System.out.println("2. View All Tasks");
         System.out.println("3. Save as file");
@@ -82,7 +82,7 @@ public class TaskController {
         return choice;
     }
 
-    private static void createTask() {
+    private static void processCreateTask() {
         scanner.nextLine();
         System.out.println("Enter title: ");
         String title = scanner.nextLine();
@@ -102,42 +102,42 @@ public class TaskController {
         System.out.println("Your new task: " + task);
     }
 
-    private static void saveAsFile(){
+    private static void processSaveAsFile(){
         scanner.nextLine();
         System.out.println("Enter file name: ");
         String fileName = scanner.nextLine();
         TaskFileService.saveTasks(TaskManager.getAllTasks(), fileName);
     }
-    private static void sortByPriority() {
+    private static void processSortByPriority() {
         TaskManager.sortByPriority();
         System.out.println("Successfully sorted by priority!");
         System.out.println("Your sorted list: ");
         TaskPrintService.printAllTasks(TaskManager.getAllTasks());
     }
-    private static void sortByStatus() {
+    private static void processSortByStatus() {
         TaskManager.sortByStatus();
         System.out.println("List after sorting by status: ");
         TaskPrintService.printAllTasks(TaskManager.getAllTasks());
     }
-    private static void markCompleted() {
+    private static void processMarkCompleted() {
         TaskPrintService.printAllTasks(TaskManager.getAllTasks());
         System.out.println("Enter task number to mark as completed:  ");
         int taskNumber = scanner.nextInt();
         TaskManager.markCompleted(taskNumber);
     }
 
-    private static void removeByNumber() {
+    private static void processRemoveByNumber() {
         TaskPrintService.printAllTasks(TaskManager.getAllTasks());
         System.out.println("Enter task number to remove: ");
         int taskNumber = scanner.nextInt();
         TaskManager.removeTask(taskNumber);
     }
 
-    private static void viewTasks() {
+    private static void processViewAllTasks() {
         TaskPrintService.printAllTasks(TaskManager.getAllTasks());
     }
 
-    private static void updateTask() {
+    private static void processUpdateTask() {
         TaskPrintService.printAllTasks(TaskManager.getAllTasks());
         System.out.println("Enter task number to update: ");
         int taskNum = scanner.nextInt();
@@ -187,7 +187,7 @@ public class TaskController {
         TaskManager.updateTask(taskNum, newTask);
     }
 
-    private static void searchByTitle() {
+    private static void processSearchByTitle() {
         scanner.nextLine();
         System.out.println("Enter the title you want to find: ");
         String searchQuery = scanner.nextLine();
