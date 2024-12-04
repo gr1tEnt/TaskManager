@@ -195,10 +195,6 @@ public class TaskController {
         String searchQuery = scanner.nextLine();
 
         List<Task> matchingTasks = TaskManager.searchByTitle(searchQuery);
-            if (matchingTasks.isEmpty()) {
-                System.out.println("No tasks found with the title: " + searchQuery);
-            } else {
-                System.out.println("Found task matching the title: " + matchingTasks);
-            }
+        TaskPrinter.printTaskFound(matchingTasks);
     }
 }

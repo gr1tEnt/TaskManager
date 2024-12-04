@@ -11,4 +11,12 @@ public class TaskPrinter {
             number++;
         }
     }
+
+    public static void printTaskFound(List<Task> tasks) {
+        if (tasks.isEmpty()) {
+            System.out.println("No tasks found.");
+        } else {
+            System.out.println("Found tasks: " + tasks);
+        }
+    }
 }
