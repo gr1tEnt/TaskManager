@@ -12,14 +12,6 @@ public class TaskManager {
         return task;
     }
 
-    public static void printAllTasks() {
-        int number = 1;
-        for (Task task : tasks) {
-            System.out.println(number + " " + task);
-            number++;
-        }
-    }
-
     public static void saveTasks(String fileName) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".txt"))) {
             for (Task task : tasks) {
@@ -83,5 +75,9 @@ public class TaskManager {
 
     public static int getTaskCount() {
         return tasks.size();
+    }
+
+    public static List<Task> getAllTasks() {
+        return tasks;
     }
 }
