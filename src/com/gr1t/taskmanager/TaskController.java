@@ -73,7 +73,7 @@ public class TaskController {
 
             choice = scanner.nextInt();
 
-            if (choice < 1 || choice > 9) { // Check input for correct range
+            if (choice < 1 || choice > 10) { // Check input for correct range
                 System.out.println("Invalid input. Please enter a number in range 1-3: ");
                 continue;
             }
@@ -105,7 +105,7 @@ public class TaskController {
         System.out.println("Enter file name: ");
         scanner.nextLine();
         String fileName = scanner.nextLine();
-        TaskManager.saveTasks(fileName);
+        TaskFileService.saveTasks(TaskManager.getAllTasks(), fileName);
     }
     private static void sortByPriority() {
         TaskManager.sortByPriority();

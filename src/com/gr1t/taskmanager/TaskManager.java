@@ -12,18 +12,6 @@ public class TaskManager {
         return task;
     }
 
-    public static void saveTasks(String fileName) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".txt"))) {
-            for (Task task : tasks) {
-                writer.write(String.valueOf(task));
-                writer.newLine();
-            }
-            System.out.println("File successfully saved as: " + fileName + ".txt");
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
     public static void sortByPriority() {
         List<Task> sortedByPriority = new ArrayList<>(tasks);
         sortedByPriority.sort(Comparator.comparing(Task::getPriority));
@@ -38,7 +26,6 @@ public class TaskManager {
             System.out.println("Invalid task number. Please try again");
         }
     }
-
 
     public static void sortByStatus() {
         List<Task> sortedByStatus = new ArrayList<>(tasks);
