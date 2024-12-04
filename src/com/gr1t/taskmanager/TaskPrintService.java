@@ -2,7 +2,7 @@ package com.gr1t.taskmanager;
 
 import java.util.List;
 
-public class TaskPrinter {
+public class TaskPrintService {
 
     public static void printAllTasks(List<Task> tasks) {
         int number = 1;

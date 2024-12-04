@@ -74,7 +74,7 @@ public class TaskController {
             choice = scanner.nextInt();
 
             if (choice < 1 || choice > 10) { // Check input for correct range
-                System.out.println("Invalid input. Please enter a number in range 1-3: ");
+                System.out.println("Invalid input. Please enter a number in range 1-10: ");
                 continue;
             }
             break;
@@ -101,9 +101,10 @@ public class TaskController {
         Task task = TaskManager.createTask(title, description, priority);
         System.out.println("Your new task: " + task);
     }
+
     private static void saveAsFile(){
-        System.out.println("Enter file name: ");
         scanner.nextLine();
+        System.out.println("Enter file name: ");
         String fileName = scanner.nextLine();
         TaskFileService.saveTasks(TaskManager.getAllTasks(), fileName);
     }
@@ -111,37 +112,34 @@ public class TaskController {
         TaskManager.sortByPriority();
         System.out.println("Successfully sorted by priority!");
         System.out.println("Your sorted list: ");
-        TaskPrinter.printAllTasks(TaskManager.getAllTasks());
+        TaskPrintService.printAllTasks(TaskManager.getAllTasks());
     }
     private static void sortByStatus() {
         TaskManager.sortByStatus();
         System.out.println("List after sorting by status: ");
-        TaskPrinter.printAllTasks(TaskManager.getAllTasks());
+        TaskPrintService.printAllTasks(TaskManager.getAllTasks());
     }
     private static void markCompleted() {
-        TaskPrinter.printAllTasks(TaskManager.getAllTasks());
-        System.out.println("Enter number of task: ");
-        int markByNumber = scanner.nextInt();
-        TaskManager.markCompleted(markByNumber);
+        TaskPrintService.printAllTasks(TaskManager.getAllTasks());
+        System.out.println("Enter task number to mark as completed:  ");
+        int taskNumber = scanner.nextInt();
+        TaskManager.markCompleted(taskNumber);
     }
 
     private static void removeByNumber() {
-        TaskPrinter.printAllTasks(TaskManager.getAllTasks());
-        System.out.println("Enter number of task: ");
+        TaskPrintService.printAllTasks(TaskManager.getAllTasks());
+        System.out.println("Enter task number to remove: ");
         int taskNumber = scanner.nextInt();
         TaskManager.removeTask(taskNumber);
-        System.out.println("List after removing: ");
-        TaskPrinter.printAllTasks(TaskManager.getAllTasks());
     }
 
     private static void viewTasks() {
-        System.out.println("All tasks: ");
-        TaskPrinter.printAllTasks(TaskManager.getAllTasks());
+        TaskPrintService.printAllTasks(TaskManager.getAllTasks());
     }
 
     private static void updateTask() {
-        TaskPrinter.printAllTasks(TaskManager.getAllTasks());
-        System.out.println("Enter number of task you wanna update: ");
+        TaskPrintService.printAllTasks(TaskManager.getAllTasks());
+        System.out.println("Enter task number to update: ");
         int taskNum = scanner.nextInt();
         scanner.nextLine();
 
@@ -195,6 +193,6 @@ public class TaskController {
         String searchQuery = scanner.nextLine();
 
         List<Task> matchingTasks = TaskManager.searchByTitle(searchQuery);
-        TaskPrinter.printTaskFound(matchingTasks);
+        TaskPrintService.printTaskFound(matchingTasks);
     }
 }
