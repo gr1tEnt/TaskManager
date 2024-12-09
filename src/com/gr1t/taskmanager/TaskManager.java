@@ -12,26 +12,6 @@ public class TaskManager {
         return task;
     }
 
-    public static void printAllTasks() {
-        int number = 1;
-        for (Task task : tasks) {
-            System.out.println(number + " " + task);
-            number++;
-        }
-    }
-
-    public static void saveTasks(String fileName) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".txt"))) {
-            for (Task task : tasks) {
-                writer.write(String.valueOf(task));
-                writer.newLine();
-            }
-            System.out.println("File successfully saved as: " + fileName + ".txt");
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
     public static void sortByPriority() {
         List<Task> sortedByPriority = new ArrayList<>(tasks);
         sortedByPriority.sort(Comparator.comparing(Task::getPriority));
@@ -46,7 +26,6 @@ public class TaskManager {
             System.out.println("Invalid task number. Please try again");
         }
     }
-
 
     public static void sortByStatus() {
         List<Task> sortedByStatus = new ArrayList<>(tasks);
@@ -70,7 +49,22 @@ public class TaskManager {
         System.out.println("Task " + taskNum + " updated to: " + updatedTask);
     }
 
+    public static List<Task> searchByTitle (String searchQuery) {
+        List<Task> matchingTask = new ArrayList<>();
+
+        for (Task task:tasks) {
+            if (task.getTitle().toLowerCase().contains(searchQuery.toLowerCase())) {
+                matchingTask.add(task);
+            }
+        }
+        return matchingTask;
+    }
+
     public static int getTaskCount() {
         return tasks.size();
+    }
+
+    public static List<Task> getAllTasks() {
+        return tasks;
     }
 }
