@@ -13,6 +13,10 @@ public class TaskManager {
     }
 
     public static void sortByPriority() {
+        if (tasks.isEmpty()) {
+            return;
+        }
+
         List<Task> sortedByPriority = new ArrayList<>(tasks);
         sortedByPriority.sort(Comparator.comparing(Task::getPriority));
         tasks.clear();
@@ -28,6 +32,10 @@ public class TaskManager {
     }
 
     public static void sortByStatus() {
+        if (tasks.isEmpty()) {
+            return;
+        }
+
         List<Task> sortedByStatus = new ArrayList<>(tasks);
         sortedByStatus.sort(Comparator.comparing(Task::isCompleted));
         tasks.clear();
