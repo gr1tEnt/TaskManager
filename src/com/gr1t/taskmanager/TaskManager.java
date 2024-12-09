@@ -28,6 +28,11 @@ public class TaskManager {
     }
 
     public static void sortByStatus() {
+        System.out.println("Before sort: " + tasks.size());
+        if (tasks.isEmpty()) {
+            return;
+        }
+
         List<Task> sortedByStatus = new ArrayList<>(tasks);
         sortedByStatus.sort(Comparator.comparing(Task::isCompleted));
         tasks.clear();
