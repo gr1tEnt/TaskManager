@@ -67,6 +67,28 @@ public class TaskManagerTest {
         assertTrue(TaskManager.getAllTasks().get(0).isCompleted());
         assertTrue(TaskManager.getAllTasks().get(1).isCompleted());
         assertTrue(TaskManager.getAllTasks().get(2).isCompleted());
+    }
+
+    @Test
+    public void testSortByPriorityWithEmptyList() {
+        TaskManager.sortByPriority();
+        assertTrue(TaskManager.getAllTasks().isEmpty());
+    }
+
+    @Test
+    public void testSortByPriorityWithAllMixedList() {
+
+        Task task1 = TaskManager.createTask("Task 1", "description 1", Priority.LOW);
+        Task task2 = TaskManager.createTask("Task 2", "description 2", Priority.MEDIUM);
+        Task task3 = TaskManager.createTask("Task 2", "description 2", Priority.MEDIUM);
+        Task task4 = TaskManager.createTask("Task 3", "description 3", Priority.HIGH);
+
+        TaskManager.sortByPriority();
+
+        assertEquals(Priority.HIGH, task4.getPriority());
+        assertEquals(Priority.MEDIUM, task3.getPriority());
+        assertEquals(Priority.MEDIUM, task2.getPriority());
+        assertEquals(Priority.LOW, task1.getPriority());
 
     }
 
