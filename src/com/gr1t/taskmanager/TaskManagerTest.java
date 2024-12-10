@@ -120,10 +120,14 @@ public class TaskManagerTest {
     @Test
     public void testRemoveTaskWithValidTaskNumber() {
         Task task1 = TaskManager.createTask("Task 1", "description 1", Priority.LOW);
+        Task task2 = TaskManager.createTask("Task 2", "description 2", Priority.LOW);
+        
+        assertEquals(2, TaskManager.getAllTasks().size(), "There should be 2 tasks.");
 
         TaskManager.removeTask(1);
 
-        assertTrue(TaskManager.getAllTasks().isEmpty());
+        assertEquals(1, TaskManager.getAllTasks().size(), "There should be 1 task left.");
+        assertEquals(task2, TaskManager.getAllTasks().get(0), "The remaining task should be Task 2.");
     }
 
     @Test
