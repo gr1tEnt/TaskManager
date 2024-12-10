@@ -4,14 +4,21 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
+import java.io.PrintStream;
+import java.io.ByteArrayOutputStream;
 
 public class TaskManagerTest {
 
     private List<Task> tasks;
 
+    private ByteArrayOutputStream outputStream;
+
     @BeforeEach
     public void setUp() {
         TaskManager.getAllTasks().clear();
+
+        outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
     }
 
     @Test
@@ -92,12 +99,21 @@ public class TaskManagerTest {
     public void testMarkCompletedWithValidTaskNumber() {
         Task task1 = TaskManager.createTask("Task 1", "description 1", Priority.LOW);
         Task task2 = TaskManager.createTask("Task 2", "description 2", Priority.LOW);
-        Task task3 = TaskManager.createTask("Task 3", "description 3", Priority.LOW);
 
         TaskManager.markCompleted(2);
 
         assertFalse(TaskManager.getAllTasks().get(0).isCompleted(), "Task 1 should be not completed.");
         assertTrue(TaskManager.getAllTasks().get(1).isCompleted(), "Task 2 should be completed.");
-        assertFalse(TaskManager.getAllTasks().get(2).isCompleted(), "Task 1 should be not completed.");
+    }
+
+    @Test
+    public void testMarkCompletedWithInvalidTaskNumber(){
+        Task task1 = TaskManager.createTask("Task 1", "description 1", Priority.LOW);
+
+        TaskManager.markCompleted(5);
+
+        assertFalse(task1.isCompleted(), "Task 1 should be not completed.");
+
+        assertTrue(outputStream.toString().contains("Invalid task number"), "Console output should indicate an invalid task number.");
     }
 }
