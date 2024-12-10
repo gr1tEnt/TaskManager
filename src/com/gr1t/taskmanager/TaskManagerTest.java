@@ -140,5 +140,15 @@ public class TaskManagerTest {
 
         assertEquals(1, TaskManager.getAllTasks().size());
 
-        assertTrue(outputStream.toString().contains("Invalid task number"), "Console output should indicate an invalid task number.");    }
+        assertTrue(outputStream.toString().contains("Invalid task number"), "Console output should indicate an invalid task number.");
+    }
+
+    @Test
+    public void testRemoveTaskWithEmptyList() {
+        TaskManager.removeTask(0);
+
+        assertEquals(0, TaskManager.getAllTasks().size(), "The task list should be empty.");
+
+        assertTrue(outputStream.toString().contains("Invalid task number"), "Console output should indicate an invalid task number.");
+    }
 }
