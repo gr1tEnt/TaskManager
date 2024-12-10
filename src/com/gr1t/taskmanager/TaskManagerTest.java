@@ -17,7 +17,7 @@ public class TaskManagerTest {
     @Test
     public void testSortByStatusWithEmptyList() {
         TaskManager.sortByStatus();
-        assertTrue(TaskManager.getAllTasks().isEmpty());
+        assertTrue(TaskManager.getAllTasks().isEmpty(), "The task list should be empty after sorting by status.");
     }
 
     @Test
@@ -31,29 +31,27 @@ public class TaskManagerTest {
 
         TaskManager.sortByStatus();
 
-        assertFalse(TaskManager.getAllTasks().get(0).isCompleted());
-        assertTrue(TaskManager.getAllTasks().get(1).isCompleted());
-        assertTrue(TaskManager.getAllTasks().get(2).isCompleted());
+        assertFalse(TaskManager.getAllTasks().get(0).isCompleted(), "The first task should be not completed.");
+        assertTrue(TaskManager.getAllTasks().get(1).isCompleted(), "The second task should be completed.");
+        assertTrue(TaskManager.getAllTasks().get(2).isCompleted(), "The third  task should be completed.");
     }
 
     @Test
     public void testSortByStatusWithAllNotCompleted() {
-
         Task task1 = TaskManager.createTask("Task 1", "description 1", Priority.LOW);
         Task task2 = TaskManager.createTask("Task 2", "description 2", Priority.LOW);
         Task task3 = TaskManager.createTask("Task 3", "description 3", Priority.LOW);
 
         TaskManager.sortByStatus();
 
-        assertFalse(TaskManager.getAllTasks().get(0).isCompleted());
-        assertFalse(TaskManager.getAllTasks().get(1).isCompleted());
-        assertFalse(TaskManager.getAllTasks().get(2).isCompleted());
+        assertFalse(TaskManager.getAllTasks().get(0).isCompleted(), "The first task should be not completed.");
+        assertFalse(TaskManager.getAllTasks().get(1).isCompleted(), "The second task should be not completed.");
+        assertFalse(TaskManager.getAllTasks().get(2).isCompleted(), "The third task should be not completed.");
 
     }
 
     @Test
     public void testSortByStatusWithAllCompleted() {
-
         Task task1 = TaskManager.createTask("Task 1", "description 1", Priority.LOW);
         Task task2 = TaskManager.createTask("Task 2", "description 2", Priority.LOW);
         Task task3 = TaskManager.createTask("Task 3", "description 3", Priority.LOW);
@@ -64,9 +62,9 @@ public class TaskManagerTest {
 
         TaskManager.sortByStatus();
 
-        assertTrue(TaskManager.getAllTasks().get(0).isCompleted());
-        assertTrue(TaskManager.getAllTasks().get(1).isCompleted());
-        assertTrue(TaskManager.getAllTasks().get(2).isCompleted());
+        assertTrue(TaskManager.getAllTasks().get(0).isCompleted(), "The first task should be completed.");
+        assertTrue(TaskManager.getAllTasks().get(1).isCompleted(), "The second task should be completed.");
+        assertTrue(TaskManager.getAllTasks().get(2).isCompleted(), "The third task should be completed.");
     }
 
     @Test
@@ -77,7 +75,6 @@ public class TaskManagerTest {
 
     @Test
     public void testSortByPriorityWithAllMixedList() {
-
         Task task1 = TaskManager.createTask("Task 1", "description 1", Priority.LOW);
         Task task2 = TaskManager.createTask("Task 2", "description 2", Priority.MEDIUM);
         Task task3 = TaskManager.createTask("Task 2", "description 2", Priority.MEDIUM);
@@ -85,11 +82,10 @@ public class TaskManagerTest {
 
         TaskManager.sortByPriority();
 
-        assertEquals(Priority.HIGH, task4.getPriority());
-        assertEquals(Priority.MEDIUM, task3.getPriority());
-        assertEquals(Priority.MEDIUM, task2.getPriority());
-        assertEquals(Priority.LOW, task1.getPriority());
-
+        assertEquals(Priority.HIGH, task4.getPriority(), "Task 4 should have high priority.");
+        assertEquals(Priority.MEDIUM, task3.getPriority(), "Task 3 should have high priority.");
+        assertEquals(Priority.MEDIUM, task2.getPriority(), "Task 2 should have high priority.");
+        assertEquals(Priority.LOW, task1.getPriority(), "Task 1 should have high priority.");
     }
 
 }
