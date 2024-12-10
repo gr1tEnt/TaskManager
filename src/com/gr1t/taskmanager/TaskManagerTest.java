@@ -121,7 +121,7 @@ public class TaskManagerTest {
     public void testRemoveTaskWithValidTaskNumber() {
         Task task1 = TaskManager.createTask("Task 1", "description 1", Priority.LOW);
         Task task2 = TaskManager.createTask("Task 2", "description 2", Priority.LOW);
-        
+
         assertEquals(2, TaskManager.getAllTasks().size(), "There should be 2 tasks.");
 
         TaskManager.removeTask(1);
@@ -134,10 +134,11 @@ public class TaskManagerTest {
     public void testRemoveTaskWithInvalidTaskNumber() {
         Task task1 = TaskManager.createTask("Task 1", "description 1", Priority.LOW);
 
+        assertEquals(1, TaskManager.getAllTasks().size(), "There should be 1 task.");
+
         TaskManager.removeTask(5);
 
-        assertFalse(TaskManager.getAllTasks().isEmpty());
+        assertEquals(1, TaskManager.getAllTasks().size());
 
-        assertTrue(outputStream.toString().contains("Invalid task number"), "Console output should indicate an invalid task number.");
-    }
+        assertTrue(outputStream.toString().contains("Invalid task number"), "Console output should indicate an invalid task number.");    }
 }
