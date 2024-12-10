@@ -88,4 +88,16 @@ public class TaskManagerTest {
         assertEquals(Priority.LOW, task1.getPriority(), "Task 1 should have high priority.");
     }
 
+    @Test
+    public void testMarkCompletedWithValidTaskNumber() {
+        Task task1 = TaskManager.createTask("Task 1", "description 1", Priority.LOW);
+        Task task2 = TaskManager.createTask("Task 2", "description 2", Priority.LOW);
+        Task task3 = TaskManager.createTask("Task 3", "description 3", Priority.LOW);
+
+        TaskManager.markCompleted(2);
+
+        assertFalse(TaskManager.getAllTasks().get(0).isCompleted(), "Task 1 should be not completed.");
+        assertTrue(TaskManager.getAllTasks().get(1).isCompleted(), "Task 2 should be completed.");
+        assertFalse(TaskManager.getAllTasks().get(2).isCompleted(), "Task 1 should be not completed.");
+    }
 }
