@@ -7,6 +7,9 @@ public class TaskManager {
     private static final List<Task> tasks = new ArrayList<>();
 
     public static Task createTask(String title, String description, Priority priority) {
+        if (priority == null) {
+            throw new IllegalArgumentException("Priority cannot be null");
+        }
         Task task = new Task(title, description, priority);
         tasks.add(task);
         return task;

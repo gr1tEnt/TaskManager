@@ -167,4 +167,14 @@ public class TaskManagerTest {
         assertEquals(priority, task.getPriority(), "Task priority should match");
     }
 
+    @Test
+    public void testCreateTaskWithNullPriority() {
+        String title = "Null Priority Task";
+        String description = "Task with null priority";
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            TaskManager.createTask(title, description, null);
+        }, "Creating a task with null priority should throw IllegalArgumentException");
+    }
+    
 }
