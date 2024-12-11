@@ -151,4 +151,18 @@ public class TaskManagerTest {
 
         assertTrue(outputStream.toString().contains("Invalid task number"), "Console output should indicate an invalid task number.");
     }
+
+    @Test
+    public void testCreateTask_Success() {
+        String title = "Title";
+        String description = "Description";
+        Priority priority = Priority.HIGH;
+
+        Task task = TaskManager.createTask(title, description, priority);
+
+        assertEquals(title, task.getTitle(), "Task title should match");
+        assertEquals(description, task.getDescription(), "Task description should match");
+        assertEquals(priority, task.getPriority(), "Task priority should match");
+
+    }
 }
