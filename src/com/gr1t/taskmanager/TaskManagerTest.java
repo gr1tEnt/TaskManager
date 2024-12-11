@@ -176,5 +176,18 @@ public class TaskManagerTest {
             TaskManager.createTask(title, description, null);
         }, "Creating a task with null priority should throw IllegalArgumentException");
     }
-    
+
+    @Test
+    public void testUpdateTask() {
+        TaskManager.createTask("Task 1", "Description 1", Priority.HIGH);
+        TaskManager.createTask("Task 2", "Description 2", Priority.MEDIUM);
+
+        Task updatedTask = new Task("Updated Task", "Updated Description", Priority.LOW);
+
+        TaskManager.updateTask(1, updatedTask);
+
+        assertEquals(updatedTask, TaskManager.getAllTasks().get(0), "The first task should be updated.");
+        assertNotEquals(updatedTask, TaskManager.getAllTasks().get(1), "The second task should remain unchanged.");
+    }
+
 }
