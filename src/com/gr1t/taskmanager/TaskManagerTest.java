@@ -153,16 +153,18 @@ public class TaskManagerTest {
     }
 
     @Test
-    public void testCreateTask_Success() {
+    public void testCreateTaskSuccess() {
         String title = "Title";
         String description = "Description";
         Priority priority = Priority.HIGH;
 
         Task task = TaskManager.createTask(title, description, priority);
 
+        assertTrue(TaskManager.getAllTasks().contains(task), "Task list should contain the newly created task");
+
         assertEquals(title, task.getTitle(), "Task title should match");
         assertEquals(description, task.getDescription(), "Task description should match");
         assertEquals(priority, task.getPriority(), "Task priority should match");
-
     }
+
 }
