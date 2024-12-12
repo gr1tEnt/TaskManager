@@ -224,6 +224,17 @@ public class TaskManagerTest {
     }
 
     @Test
+    public void testSearchByTitleWithEmptyQuery() {
+        TaskManager.createTask("Task 1", "Description 1", Priority.HIGH);
+        TaskManager.createTask("Task 2", "Description 2", Priority.MEDIUM);
+        TaskManager.createTask("Task 3", "Description 3", Priority.LOW);
+        
+        List<Task> matchingTask = TaskManager.searchByTitle("");
+
+        assertEquals(3, matchingTask.size(), "Result should contain all tasks for an empty query");
+    }
+
+    @Test
     public void testGetTaskCountWithExistingTasks() {
         TaskManager.createTask("Task 1", "Description 1", Priority.HIGH);
         TaskManager.createTask("Task 2", "Description 2", Priority.MEDIUM);
