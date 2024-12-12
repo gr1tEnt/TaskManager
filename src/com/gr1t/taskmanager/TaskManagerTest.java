@@ -191,7 +191,7 @@ public class TaskManagerTest {
     }
 
     @Test
-    public void testSearchByTitle() {
+    public void testSearchByTitleWithSingleMatch() {
         Task task = TaskManager.createTask("Task 1", "Description 1", Priority.HIGH);
 
         List<Task> matchingTask = TaskManager.searchByTitle("task");
@@ -199,6 +199,19 @@ public class TaskManagerTest {
         assertEquals(1, matchingTask.size(), "Result should contain one matching task");
 
         assertEquals("Task 1", matchingTask.get(0).getTitle(), "The title of the matching task should be 'Task 1' ");
+    }
+
+    @Test
+    public void testSearchByTitleWithMultipleMatches() {
+        TaskManager.createTask("Task 1", "Description 1", Priority.HIGH);
+        TaskManager.createTask("Task 2", "Description 2", Priority.MEDIUM);
+
+        List<Task> matchingTask = TaskManager.searchByTitle("task");
+
+        assertEquals(2, matchingTask.size(), "Result should contain one matching task");
+
+        assertEquals("Task 1", matchingTask.get(0).getTitle(), "The title of the matching task should be 'Task 1' ");
+        assertEquals("Task 2", matchingTask.get(1).getTitle(), "The title of the matching task should be 'Task 2' ");
     }
 
 }
