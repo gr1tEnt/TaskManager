@@ -214,4 +214,13 @@ public class TaskManagerTest {
         assertEquals("Task 2", matchingTask.get(1).getTitle(), "The title of the matching task should be 'Task 2' ");
     }
 
+    @Test
+    public void testSearchByTitleWithNoMatches() {
+        TaskManager.createTask("Task 1", "Description 1", Priority.HIGH);
+
+        List<Task> matchingTask = TaskManager.searchByTitle("list");
+
+        assertEquals(0, matchingTask.size(), "Result should not contain matching tasks");
+    }
+
 }
