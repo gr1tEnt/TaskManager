@@ -208,7 +208,7 @@ public class TaskManagerTest {
 
         List<Task> matchingTask = TaskManager.searchByTitle("task");
 
-        assertEquals(2, matchingTask.size(), "Result should contain one matching task");
+        assertEquals(2, matchingTask.size(), "Result should contain two matching tasks");
 
         assertEquals("Task 1", matchingTask.get(0).getTitle(), "The title of the matching task should be 'Task 1' ");
         assertEquals("Task 2", matchingTask.get(1).getTitle(), "The title of the matching task should be 'Task 2' ");
@@ -228,10 +228,20 @@ public class TaskManagerTest {
         TaskManager.createTask("Task 1", "Description 1", Priority.HIGH);
         TaskManager.createTask("Task 2", "Description 2", Priority.MEDIUM);
         TaskManager.createTask("Task 3", "Description 3", Priority.LOW);
-        
+
         List<Task> matchingTask = TaskManager.searchByTitle("");
 
         assertEquals(3, matchingTask.size(), "Result should contain all tasks for an empty query");
+    }
+
+    @Test
+    public void testSearchByTitleWithUpperCaseQuery() {
+        TaskManager.createTask("Task 1", "Description 1", Priority.HIGH);
+        TaskManager.createTask("Task 2", "Description 2", Priority.MEDIUM);
+
+        List<Task> matchingTask = TaskManager.searchByTitle("TASK");
+
+        assertEquals(2, matchingTask.size(), "Result should contain one matching task");
     }
 
     @Test
@@ -239,12 +249,12 @@ public class TaskManagerTest {
         TaskManager.createTask("Task 1", "Description 1", Priority.HIGH);
         TaskManager.createTask("Task 2", "Description 2", Priority.MEDIUM);
 
-        assertEquals(2, TaskManager.getTaskCount());
+        assertEquals(2, TaskManager.getTaskCount(), "There should be 2 tasks");
     }
 
     @Test
     public void testGetTaskCountWithNoTasks() {
-        assertEquals(0, TaskManager.getTaskCount());
+        assertEquals(0, TaskManager.getTaskCount(), "There should be no tasks");
     }
 
 }
