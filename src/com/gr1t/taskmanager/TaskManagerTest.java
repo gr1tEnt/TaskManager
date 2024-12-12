@@ -223,4 +223,12 @@ public class TaskManagerTest {
         assertEquals(0, matchingTask.size(), "Result should not contain matching tasks");
     }
 
+    @Test
+    public void testGetTaskCount() {
+        TaskManager.createTask("Task 1", "Description 1", Priority.HIGH);
+        TaskManager.createTask("Task 2", "Description 2", Priority.MEDIUM);
+
+        assertEquals(2, TaskManager.getTaskCount());
+    }
+
 }
