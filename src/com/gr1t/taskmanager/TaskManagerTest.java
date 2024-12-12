@@ -224,11 +224,16 @@ public class TaskManagerTest {
     }
 
     @Test
-    public void testGetTaskCount() {
+    public void testGetTaskCountWithExistingTasks() {
         TaskManager.createTask("Task 1", "Description 1", Priority.HIGH);
         TaskManager.createTask("Task 2", "Description 2", Priority.MEDIUM);
 
         assertEquals(2, TaskManager.getTaskCount());
+    }
+
+    @Test
+    public void testGetTaskCountWithNoTasks() {
+        assertEquals(0, TaskManager.getTaskCount());
     }
 
 }
