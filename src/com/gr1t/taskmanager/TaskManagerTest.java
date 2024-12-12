@@ -190,4 +190,15 @@ public class TaskManagerTest {
         assertNotEquals(updatedTask, TaskManager.getAllTasks().get(1), "The second task should remain unchanged.");
     }
 
+    @Test
+    public void testSearchByTitle() {
+        Task task = TaskManager.createTask("Task 1", "Description 1", Priority.HIGH);
+
+        List<Task> matchingTask = TaskManager.searchByTitle("task");
+
+        assertEquals(1, matchingTask.size(), "Result should contain one matching task");
+
+        assertEquals("Task 1", matchingTask.get(0).getTitle(), "The title of the matching task should be 'Task 1' ");
+    }
+
 }
