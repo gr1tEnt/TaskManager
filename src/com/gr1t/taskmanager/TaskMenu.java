@@ -50,7 +50,7 @@ public class TaskMenu {
     
     private static void displayMenu(){
         System.out.println("1. Create Task");
-        System.out.println("2. View All Tasks");
+        System.out.println("2. View TAll Tasks");
         System.out.println("3. Save as file");
         System.out.println("4. Sort by priority");
         System.out.println("5. Sort by status");

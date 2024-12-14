@@ -10,7 +10,6 @@ import java.io.ByteArrayOutputStream;
 public class TaskManagerTest {
 
     private List<Task> tasks;
-
     private ByteArrayOutputStream outputStream;
 
     @BeforeEach
@@ -235,13 +234,13 @@ public class TaskManagerTest {
     }
 
     @Test
-    public void testSearchByTitleWithUpperCaseQuery() {
+    public void testSearchByTitleWithUppercaseQuery() {
         TaskManager.createTask("Task 1", "Description 1", Priority.HIGH);
         TaskManager.createTask("Task 2", "Description 2", Priority.MEDIUM);
 
         List<Task> matchingTask = TaskManager.searchByTitle("TASK");
 
-        assertEquals(2, matchingTask.size(), "Result should contain one matching task");
+        assertEquals(2, matchingTask.size(), "Result should contain two matching task");
     }
 
     @Test
