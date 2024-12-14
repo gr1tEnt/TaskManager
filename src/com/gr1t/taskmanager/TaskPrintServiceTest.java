@@ -35,4 +35,14 @@ class TaskPrintServiceTest {
         assertEquals("", outputStreamCaptor.toString());
     }
 
+    @Test
+    public void testPrintAllTasksWithOneExistingTask() {
+        Task task1 = TaskManager.createTask("Task 1", "description 1", Priority.LOW);
+
+        TaskPrintService.printAllTasks(TaskManager.getAllTasks());
+
+        String expectedOutput = "1 " + task1 + System.lineSeparator();;
+        assertEquals(expectedOutput, outputStreamCaptor.toString());
+    }
+
 }
