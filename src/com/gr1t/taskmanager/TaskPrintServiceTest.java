@@ -18,7 +18,7 @@ class TaskPrintServiceTest {
     }
 
     @Test
-    public void testPrintAllTasksWithExistedTask() {
+    public void testPrintAllTasksWithExistingTasks() {
         Task task1 = TaskManager.createTask("Task 1", "description 1", Priority.LOW);
         Task task2 = TaskManager.createTask("Task 2", "description 2", Priority.LOW);
 
@@ -26,6 +26,13 @@ class TaskPrintServiceTest {
 
         String expectedOutput = "1 " + task1 + System.lineSeparator() + "2 " + task2 + System.lineSeparator();
         assertEquals(expectedOutput, outputStreamCaptor.toString());
+    }
+
+    @Test
+    public void testPrintAllTasksWithNonExistentTasks() {
+        TaskPrintService.printAllTasks(TaskManager.getAllTasks());
+
+        assertEquals("", outputStreamCaptor.toString());
     }
 
 }
