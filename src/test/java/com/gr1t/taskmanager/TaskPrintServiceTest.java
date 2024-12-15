@@ -56,5 +56,17 @@ class TaskPrintServiceTest {
 
         assertEquals("No tasks found." + System.lineSeparator(), outputStreamCaptor.toString());
     }
-    
+
+    @Test
+    public void testPrintTaskFoundWithNonEmptyList() {
+        Task task1 = new Task("Task 1", "Description 1", Priority.LOW);
+        Task task2 = new Task("Task 2", "Description 2", Priority.HIGH);
+        tasks = List.of(task1, task2);
+
+        TaskPrintService.printTaskFound(tasks);
+
+        String expectedOutput = "Found tasks: " + tasks + System.lineSeparator();
+        assertEquals(expectedOutput, outputStreamCaptor.toString());
+    }
+
 }
