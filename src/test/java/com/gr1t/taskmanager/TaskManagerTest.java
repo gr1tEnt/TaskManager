@@ -1,11 +1,16 @@
 package com.gr1t.taskmanager;
 
+import com.gr1t.taskmanager.Priority;
+import com.gr1t.taskmanager.Task;
+import com.gr1t.taskmanager.TaskManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.*;
-import static org.junit.jupiter.api.Assertions.*;
-import java.io.PrintStream;
+
 import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TaskManagerTest {
 

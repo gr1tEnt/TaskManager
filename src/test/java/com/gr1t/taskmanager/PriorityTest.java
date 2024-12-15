@@ -1,5 +1,6 @@
 package com.gr1t.taskmanager;
 
+import com.gr1t.taskmanager.Priority;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class TaskPrintServiceTest {
 
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private TaskManager taskManagerMock;
 
     @BeforeEach
     public void setUp() {
