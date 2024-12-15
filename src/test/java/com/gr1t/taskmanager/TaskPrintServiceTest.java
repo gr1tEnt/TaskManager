@@ -58,6 +58,17 @@ class TaskPrintServiceTest {
     }
 
     @Test
+    public void testPrintTaskFoundWithSingleTask() {
+        Task task1 = new Task("Task 1", "Description 1", Priority.LOW);
+        tasks = List.of(task1);
+
+        TaskPrintService.printTaskFound(tasks);
+
+        String expectedOutput = "Found tasks: " + tasks + System.lineSeparator();
+        assertEquals(expectedOutput, outputStreamCaptor.toString());
+    }
+
+    @Test
     public void testPrintTaskFoundWithNonEmptyList() {
         Task task1 = new Task("Task 1", "Description 1", Priority.LOW);
         Task task2 = new Task("Task 2", "Description 2", Priority.HIGH);
