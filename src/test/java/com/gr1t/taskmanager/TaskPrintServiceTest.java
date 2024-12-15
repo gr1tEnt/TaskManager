@@ -5,13 +5,14 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class TaskPrintServiceTest {
 
+    private List<Task> tasks;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-    private TaskManager taskManagerMock;
 
     @BeforeEach
     public void setUp() {
@@ -47,4 +48,13 @@ class TaskPrintServiceTest {
         assertEquals(expectedOutput, outputStreamCaptor.toString());
     }
 
+    @Test
+    public void testPrintTaskFoundWithEmptyList() {
+        tasks = List.of();
+
+        TaskPrintService.printTaskFound(tasks);
+
+        assertEquals("No tasks found." + System.lineSeparator(), outputStreamCaptor.toString());
+    }
+    
 }
