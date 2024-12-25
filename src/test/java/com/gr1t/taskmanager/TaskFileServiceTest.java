@@ -30,4 +30,17 @@ class TaskFileServiceTest {
         assertEquals(3, lines.size(), "The file should contain 3 lines");
     }
 
+    @Test
+    public void testSaveTasksEmptyList() throws IOException {
+        List<Task> tasks = Collections.emptyList();
+
+        TaskFileService.saveTasks(tasks, fileName);
+
+        Path filePath = Paths.get(fileName+ ".txt");
+        assertTrue(Files.exists(filePath), "The file should exist");
+
+        List<String> lines = Files.readAllLines(filePath);
+        assertEquals(0, lines.size(), "The file should contain 0 lines");
+    }
+
 }

@@ -1,3 +1,0 @@
-Task{title='Task 1', description='description 1', priority=LOW, isCompleted=false}
-Task{title='Task 2', description='description 2', priority=LOW, isCompleted=false}
-Task{title='Task 3', description='description 3', priority=LOW, isCompleted=false}
