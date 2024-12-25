@@ -43,4 +43,12 @@ class TaskFileServiceTest {
         assertEquals(0, lines.size(), "The file should contain 0 lines");
     }
 
+    @Test
+    public void testSaveTasksIncorrectName() {
+        List<Task> tasks = Collections.singletonList(new Task("Task 1", "description 1", Priority.LOW));
+
+        String invalidFileName = "invalid:/name";
+        assertDoesNotThrow(() -> TaskFileService.saveTasks(tasks, invalidFileName));
+    }
+
 }
